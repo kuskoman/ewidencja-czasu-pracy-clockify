@@ -30,6 +30,8 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^6.1.2",
     "@nestjs/terminus": "^9.1.2",
+    "csv": "^6.2.2",
+    "moment": "^2.29.4",
     "mongoose": "^6.6.5",
     "nest-logging-transport": "^1.2.0",
     "reflect-metadata": "^0.1.13",
