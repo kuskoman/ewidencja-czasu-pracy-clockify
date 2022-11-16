@@ -1,3 +1,4 @@
+import { UnprocessableEntityException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { readFileSync } from 'fs';
 import { join } from 'path';
@@ -24,6 +25,13 @@ describe(CsvParserService.name, () => {
     const validReportFixture = loadFixture('example-report.csv');
     const parsedCsv = await service.parseCsvReport(validReportFixture);
     expect(parsedCsv).toMatchSnapshot();
+  });
+
+  it('should throw an error when csv is not valid', async () => {
+    const invalidReportFixture = loadFixture('invalid-report.csv');
+    await expect(service.parseCsvReport(invalidReportFixture)).rejects.toThrow(
+      UnprocessableEntityException,
+    );
   });
 });
 

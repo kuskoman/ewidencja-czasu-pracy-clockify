@@ -7,7 +7,7 @@ import { CsvConfig, csvConfig } from '../config/csv.config';
 import { parse as parseCsv } from 'csv';
 import { ReportValidatorService } from './report-validator/report-validator.service';
 import { CsvReport, SerializedReport } from './csv-parser.interfaces';
-import * as moment from 'moment';
+import { utc } from 'moment';
 import { CSV_REPORT_DATE_FORMAT } from './csv-parser.consts';
 
 @Injectable()
@@ -39,7 +39,7 @@ export class CsvParserService {
     const [dateString, , decimalTime] = row;
 
     return {
-      date: moment(dateString, CSV_REPORT_DATE_FORMAT).toDate(),
+      date: utc(dateString, CSV_REPORT_DATE_FORMAT).toDate(),
       time: Number(decimalTime),
     };
   }
