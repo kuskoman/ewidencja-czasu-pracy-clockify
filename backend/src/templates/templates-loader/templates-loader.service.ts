@@ -13,9 +13,9 @@ import {
 } from '../../config/templates.config';
 
 @Injectable()
-export class TemplatesCacheService implements OnApplicationBootstrap {
+export class TemplatesLoaderService implements OnApplicationBootstrap {
   private readonly templatesCache = new Map<string, string>();
-  private readonly logger = new Logger(TemplatesCacheService.name);
+  private readonly logger = new Logger(TemplatesLoaderService.name);
   private allowedTemplates = new Set<string>();
 
   constructor(

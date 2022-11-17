@@ -5,21 +5,21 @@ import {
   templatesConfig,
   TemplatesConfig,
 } from '../../config/templates.config';
-import { TemplatesCacheService } from './templates-cache.service';
+import { TemplatesLoaderService } from './templates-loader.service';
 
-describe(TemplatesCacheService.name, () => {
-  let service: TemplatesCacheService;
+describe(TemplatesLoaderService.name, () => {
+  let service: TemplatesLoaderService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        TemplatesCacheService,
+        TemplatesLoaderService,
         { provide: templatesConfig.KEY, useValue: configMock },
       ],
     }).compile();
 
     await module.init();
-    service = module.get<TemplatesCacheService>(TemplatesCacheService);
+    service = module.get<TemplatesLoaderService>(TemplatesLoaderService);
   });
 
   it('should not allow to load template outside allowed dir', async () => {
@@ -37,7 +37,7 @@ describe(TemplatesCacheService.name, () => {
   it('should fail if there are more templates than allowed', async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        TemplatesCacheService,
+        TemplatesLoaderService,
         {
           provide: templatesConfig.KEY,
           useValue: { ...configMock, templatesLimit: 1 },
