@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ewidencja Czasu Pracy</title>
+  </head>
+  <body>
+    <main>
+      <h1>EWIDENCJA CZASU ZLECENIOBIORCY</h1>
+      <p><span style="font-weight: bold">Okres:</span> okres</p>
+      <p><span style="font-weight: bold">Imię:</span> imie</p>
+      <p><span style="font-weight: bold">Nazwisko:</span> nazwisko</p>
+
+      <table>
+        <tr>
+          <td><span style="font-weight: bold">Data</span></td>
+          <td><span style="font-weight: bold">od</span></td>
+          <td><span style="font-weight: bold">do</span></td>
+          <td><span style="font-weight: bold">ilość godzin</span></td>
+          <td><span style="font-weight: bold">podpis pracownika</span></td>
+        </tr>
+
+        <% for(const { date, hours, startHour, endHour } of data || []) { %>
+        <tr>
+          <td><%= date %></td>
+          <td><%= startHour %></td>
+          <td><%= endHour %></td>
+          <td><%= hours %></td>
+          <td></td>
+        </tr>
+        <% } %>
+
+        <tr>
+          <td><span style="font-weight: bold">Suma</span></td>
+          <td></td>
+          <td></td>
+          <td><span style="font-weight: bold">2137</span></td>
+          <td></td>
+        </tr>
+      </table>
+    </main>
+    <style>
+      main {
+        text-align: center;
+      }
+
+      table {
+        margin: auto;
+      }
+
+      table,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+      }
+
+      td {
+        min-width: 75px;
+      }
+    </style>
+  </body>
+</html>
