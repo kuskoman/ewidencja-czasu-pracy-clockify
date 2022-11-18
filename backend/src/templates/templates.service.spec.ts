@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { TemplatesLoaderService } from './templates-loader/templates-loader.service';
 import { TemplatesService } from './templates.service';
 
-describe('TemplatesService', () => {
+describe(TemplatesService.name, () => {
   let service: TemplatesService;
 
   beforeEach(async () => {
@@ -16,9 +16,20 @@ describe('TemplatesService', () => {
     service = module.get<TemplatesService>(TemplatesService);
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  it('should properly render ejs template', async () => {
+    templatesLoaderMock.getTemplate.mockImplementationOnce(
+      async () => '<%= name %>',
+    );
+    const templateName = 'stein';
+
+    await expect(
+      service.renderTemplate(templateName, { name: 'Till' }),
+    ).resolves.toBe('Till');
+    expect(templatesLoaderMock.getTemplate).toBeCalledWith(templateName);
+    expect(templatesLoaderMock.getTemplate).toBeCalledTimes(1);
   });
 });
 
-const templatesLoaderMock = {};
+const templatesLoaderMock = {
+  getTemplate: jest.fn(),
+};

@@ -6,6 +6,7 @@ import { render } from 'ejs';
 @Injectable()
 export class TemplatesService {
   private readonly defaultTemplateFunctions = Object.freeze({ moment });
+  private readonly render = render;
 
   constructor(private readonly templatesLoader: TemplatesLoaderService) {}
 
@@ -16,6 +17,6 @@ export class TemplatesService {
     const ejsTemplate = await this.templatesLoader.getTemplate(template);
     const mergedVariables = { ...variables, ...this.defaultTemplateFunctions };
 
-    return render(ejsTemplate, mergedVariables);
+    return this.render(ejsTemplate, mergedVariables);
   }
 }
