@@ -69,10 +69,11 @@ export class TemplatesLoaderService implements OnApplicationBootstrap {
   }
 
   private async addFilesToAllowedTemplates(dir: string) {
+    this.logger.verbose(`Looking for templates in ${dir}`);
+
     const dirents = await readdir(dir, { withFileTypes: true });
     await Promise.all(
       dirents.map((dirent) => {
-        this.logger.verbose(`Looking for templates in ${dirent}`);
         const res = resolve(dir, dirent.name);
         if (dirent.isDirectory()) {
           return this.addFilesToAllowedTemplates(dir);
