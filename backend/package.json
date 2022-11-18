@@ -4,12 +4,14 @@
   "description": "",
   "author": "",
   "private": true,
+  "main": "dist/main.js",
+  "bin": "dist/main.js",
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
     "prebuild:prod": "yarn build",
-    "build:prod": "yarn pkg --public --compress GZip -t node18-linuxstatic dist/main.js -o out",
+    "build:prod": "pkg .",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -30,6 +32,8 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^6.1.2",
     "@nestjs/terminus": "^9.1.2",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
     "csv": "^6.2.2",
     "ejs": "^3.1.8",
     "moment": "^2.29.4",
@@ -63,6 +67,16 @@
     "ts-node": "^10.0.0",
     "tsconfig-paths": "4.1.0",
     "typescript": "^4.7.4"
+  },
+  "pkg": {
+    "assets": "templates/",
+    "targets": [
+      "node18-linuxstatic"
+    ],
+    "outputPath": "out/",
+    "scripts": "dist/**/*.js",
+    "compression": "GZip",
+    "public": true
   },
   "jest": {
     "moduleFileExtensions": [

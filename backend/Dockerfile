@@ -18,7 +18,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-COPY --from=build /app/out /app/main
+COPY --from=build /app/out/ewidencja-czasu-clockify-backend /app/main
 
 EXPOSE 3000
 CMD [ "./main" ]
