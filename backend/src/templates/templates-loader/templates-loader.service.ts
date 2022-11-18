@@ -76,7 +76,7 @@ export class TemplatesLoaderService implements OnApplicationBootstrap {
       dirents.map((dirent) => {
         const res = resolve(dir, dirent.name);
         if (dirent.isDirectory()) {
-          return this.addFilesToAllowedTemplates(dir);
+          return this.addFilesToAllowedTemplates(res);
         }
 
         this.logger.debug(`Adding ${res} to allowed templates`);
