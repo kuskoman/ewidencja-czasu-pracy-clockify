@@ -2,7 +2,7 @@
   "name": "ewidencja-czasu-clockify-backend",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Jakub Surdej <kubasurdej@gmail.com>",
   "private": true,
   "main": "dist/main.js",
   "bin": "dist/main.js",
@@ -12,6 +12,7 @@
     "build": "nest build",
     "prebuild:prod": "yarn build",
     "build:prod": "pkg .",
+    "doc:dev": "compodoc -p tsconfig.json -s",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -44,6 +45,7 @@
     "rxjs": "^7.2.0"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.19",
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
