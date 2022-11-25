@@ -13,14 +13,14 @@ export class CreateReportDto {
   @IsOptional()
   //@Matches(/(([0-9]|1[0-9]|2[0-3])(:[0-6][0-9])?|24(:00)?)/gm)
   @IsString()
-  @ApiProperty({ example: '9:30' })
+  @ApiProperty({ example: '9:30', type: String })
   startHour = '8:30';
 
   @IsOptional()
-  @ApiProperty()
+  @ApiProperty({ example: false, type: Boolean })
   roundPartials = true;
 
-  @ApiProperty()
+  @ApiProperty({ example: '21/03/2002 - 23/04/2004', type: String })
   @IsOptional()
   period: string | null = null;
 }

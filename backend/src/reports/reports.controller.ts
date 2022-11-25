@@ -10,8 +10,10 @@ import {
 import { ReportsService } from './reports.service';
 import { CreateReportDto } from './reports.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('reports')
+@ApiTags('reports')
 export class ReportsController {
   constructor(private readonly reportsService: ReportsService) {}
 
