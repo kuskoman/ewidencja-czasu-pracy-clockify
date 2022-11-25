@@ -4,6 +4,8 @@ import {
   Body,
   UseInterceptors,
   UploadedFile,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { ReportsService } from './reports.service';
 import { CreateReportDto } from './reports.dto';
@@ -14,6 +16,7 @@ export class ReportsController {
   constructor(private readonly reportsService: ReportsService) {}
 
   @Post()
+  @HttpCode(HttpStatus.OK)
   @UseInterceptors(FileInterceptor('file'))
   async create(
     // todo: make file required

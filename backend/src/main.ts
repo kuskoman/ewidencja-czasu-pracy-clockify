@@ -11,7 +11,11 @@ const bootstrap = async () => {
   const { port } = app.get<BaseConfig>(baseConfig.KEY);
 
   app.useGlobalPipes(
-    new ValidationPipe({ whitelist: true, errorHttpStatusCode: 422 }),
+    new ValidationPipe({
+      whitelist: true,
+      errorHttpStatusCode: 422,
+      transform: true,
+    }),
   );
   app.enableShutdownHooks();
 
