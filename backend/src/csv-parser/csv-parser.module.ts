@@ -5,5 +5,6 @@ import { ReportValidatorModule } from './report-validator/report-validator.modul
 @Module({
   providers: [CsvParserService],
   imports: [ReportValidatorModule],
+  exports: [CsvParserService],
 })
 export class CsvParserModule {}

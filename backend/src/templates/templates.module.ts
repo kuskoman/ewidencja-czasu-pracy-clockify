@@ -5,5 +5,6 @@ import { TemplatesLoaderModule } from './templates-loader/templates-loader.modul
 @Module({
   providers: [TemplatesService],
   imports: [TemplatesLoaderModule],
+  exports: [TemplatesService],
 })
 export class TemplatesModule {}
