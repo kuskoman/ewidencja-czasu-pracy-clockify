@@ -11,7 +11,7 @@ export class CreateReportDto {
   surname!: string;
 
   @IsOptional()
-  //@Matches(/(([0-9]|1[0-9]|2[0-3])(:[0-6][0-9])?|24(:00)?)/gm)
+  @Matches(/(([0-9]|1[0-9]|2[0-3])(:[0-6][0-9])?|24(:00)?)/)
   @IsString()
   @ApiProperty({ example: '9:30', type: String })
   startHour = '8:30';
