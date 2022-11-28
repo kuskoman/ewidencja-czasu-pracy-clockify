@@ -1,0 +1,1 @@
+export const REPORTS_DATEFORMAT = 'YYYY/MM/DD';
