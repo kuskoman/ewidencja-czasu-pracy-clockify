@@ -18,6 +18,7 @@ const bootstrap = async () => {
     }),
   );
   app.enableShutdownHooks();
+  app.setGlobalPrefix('api');
 
   configureSwagger(app);
 
