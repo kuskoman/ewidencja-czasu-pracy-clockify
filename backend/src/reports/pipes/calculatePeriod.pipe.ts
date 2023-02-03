@@ -16,9 +16,12 @@ export class CalculatePeriodPipe implements PipeTransform {
     const firstDate = report[0].date;
     const lastDate = report[report.length - 1].date;
 
-    const [periodStart, periodEnd] = [firstDate, lastDate].map((period) =>
+    const [firstReportDate, periodEnd] = [firstDate, lastDate].map((period) =>
       moment(period).format(REPORTS_DATEFORMAT),
     );
+
+    const periodPartsWithoutDay = firstReportDate.split('/').slice(1);
+    const periodStart = ['01'].concat(periodPartsWithoutDay).join('/');
 
     return `${periodStart} - ${periodEnd}`;
   }
