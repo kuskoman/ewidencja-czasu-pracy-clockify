@@ -6,6 +6,7 @@ import {
   UploadedFile,
   HttpCode,
   HttpStatus,
+  UnprocessableEntityException,
 } from '@nestjs/common';
 import { ReportsService } from './reports.service';
 import { CreateReportDto } from './reports.dto';
@@ -21,10 +22,12 @@ export class ReportsController {
   @HttpCode(HttpStatus.OK)
   @UseInterceptors(FileInterceptor('file'))
   async create(
-    // todo: make file required
     @UploadedFile() file: Express.Multer.File,
     @Body() createReportDto: CreateReportDto,
   ) {
+    if (!file) {
+      throw new UnprocessableEntityException('You must provide a valid file');
+    }
     return await this.reportsService.create({ ...createReportDto, file });
   }
 }
