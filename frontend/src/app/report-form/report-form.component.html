@@ -1,0 +1,38 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Form</mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="form">
+    <mat-form-field formControlName="name">
+      <input matInput placeholder="Name" formControlName="name" />
+    </mat-form-field>
+    <mat-form-field formControlName="surname">
+      <input matInput placeholder="Surname" formControlName="surname" />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Period Start"
+        formControlName="periodStart"
+      />
+
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="picker2"
+        placeholder="Period End"
+        formControlName="periodEnd"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="file" formControlName="file" />
+    </mat-form-field>
+    <button mat-raised-button color="primary">Submit</button>
+  </form>
+</mat-card>
