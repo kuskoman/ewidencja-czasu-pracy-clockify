@@ -27,6 +27,7 @@ export class CalculateTemplateRowsPipe implements PipeTransform {
   private addTimeToStartHour(startHour: string, hours: number) {
     const [hourTime, minuteTime] = startHour.split(':');
     const endHour = +hourTime + hours;
-    return `${endHour}:${minuteTime}`;
+
+    return `${endHour % 24}:${minuteTime}`;
   }
 }

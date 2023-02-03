@@ -1,4 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { CsvParserService } from '../csv-parser/csv-parser.service';
+import { TemplatesService } from '../templates/templates.service';
 import { ReportsService } from './reports.service';
 
 describe(ReportsService.name, () => {
@@ -6,7 +8,11 @@ describe(ReportsService.name, () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ReportsService],
+      providers: [
+        ReportsService,
+        { provide: CsvParserService, useValue: csvParserServiceMock },
+        { provide: TemplatesService, useValue: templatesServiceMock },
+      ],
     }).compile();
 
     service = module.get<ReportsService>(ReportsService);
@@ -16,3 +22,11 @@ describe(ReportsService.name, () => {
     expect(service).toBeDefined();
   });
 });
+
+const csvParserServiceMock = {
+  parseCsvReport: jest.fn(),
+};
+
+const templatesServiceMock = {
+  renderTemplate: jest.fn(),
+};

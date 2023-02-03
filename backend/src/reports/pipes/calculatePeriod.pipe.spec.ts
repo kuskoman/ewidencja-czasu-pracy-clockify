@@ -9,18 +9,24 @@ describe(CalculatePeriodPipe.name, () => {
     expect(transform(reportMock, periodMock)).toBe(periodMock);
   });
 
-  it('should calculate period if not provided with dto', () => {
-    expect(transform(reportMock)).toBe('2022/03/10 - 2022/07/10');
+  it('should assume start of the month as period if not provided with dto', () => {
+    expect(transform(reportMock)).toBe('2022/03/01 - 2022/03/15');
   });
 });
 
-const reportMock: SerializedReport = [
-  '03/10/2022',
-  '04/10/2022',
-  '05/10/2022',
-  '06/10/2022',
-  '07/10/2022',
-].map((date) => ({ date: utc(date).toDate(), time: 8 }));
+const sampleDates = [
+  // iso8061 date format
+  '2022-03-10',
+  '2022-03-11',
+  '2022-03-12',
+  '2022-03-13',
+  '2022-03-14',
+  '2022-03-15',
+] as const;
+const reportMock: SerializedReport = sampleDates.map((date) => ({
+  date: utc(date).toDate(),
+  time: 8,
+}));
 
 const transform = (report: SerializedReport, period?: string) => {
   const pipe = new CalculatePeriodPipe({ period } as CreateReportWithFileDto);
