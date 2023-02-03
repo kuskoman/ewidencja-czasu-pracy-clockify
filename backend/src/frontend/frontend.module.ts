@@ -23,6 +23,8 @@ import {
         }
         const serveOptions: ServeStaticModuleOptions = {
           rootPath: join(__dirname, '..', '..', 'static'),
+          renderPath: '/',
+          exclude: ['/api*', '/swagger*'],
         };
         return [serveOptions];
       },
