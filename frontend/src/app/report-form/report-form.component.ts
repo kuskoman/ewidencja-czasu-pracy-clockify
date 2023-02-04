@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { NgxFileDropModule } from 'ngx-file-drop';
 
 @Component({
   selector: 'app-report-form',
@@ -26,6 +27,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatCardModule,
     ReactiveFormsModule,
     MatMomentDateModule,
+    NgxFileDropModule,
   ],
   standalone: true,
 })

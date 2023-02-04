@@ -10,9 +10,24 @@
       <mat-form-field class="form__field">
         <input matInput placeholder="Surname" formControlName="surname" />
       </mat-form-field>
-      <mat-form-field class="form__field">
-        <input matInput placeholder="File" formControlName="file" />
-      </mat-form-field>
+      <ngx-file-drop dropZoneLabel="Drop files here" class="form__file-drop">
+        <ng-template
+          ngx-file-drop-content-tmp
+          let-openFileSelector="openFileSelector"
+        >
+          Drop files here, or select them using button
+
+          <button
+            type="button"
+            mat-raised-button
+            color="primary"
+            class="form__file-drop__button"
+            (click)="openFileSelector()"
+          >
+            Browse Files
+          </button>
+        </ng-template>
+      </ngx-file-drop>
       <button mat-raised-button color="primary" type="submit">Submit</button>
     </form>
   </mat-card-content>

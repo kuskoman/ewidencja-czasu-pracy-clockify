@@ -20,3 +20,13 @@
   color: mat-color($mat-dark-theme-foreground, text);
   margin-bottom: 10px;
 }
+
+.form__file-drop {
+  margin: {
+    bottom: 20px;
+  }
+}
+
+.form__file-drop__button {
+  margin-left: 20px;
+}
