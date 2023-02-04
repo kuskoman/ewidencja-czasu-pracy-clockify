@@ -28,6 +28,11 @@
           </button>
         </ng-template>
       </ngx-file-drop>
+      <div v-if="true" class="form__file-drop__file-box">
+        <mat-icon class="form__file-drop__icon">insert_drive_file</mat-icon>
+        <span class="form__file-drop__file-name-label">File name: </span>
+        <span class="form__file-drop__file-name">file name.png</span>
+      </div>
       <button mat-raised-button color="primary" type="submit">Submit</button>
     </form>
   </mat-card-content>

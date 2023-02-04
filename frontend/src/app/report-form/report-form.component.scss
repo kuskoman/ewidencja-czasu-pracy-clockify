@@ -16,9 +16,32 @@
   }
 }
 
+$formTitleColor: mat-color($mat-dark-theme-foreground, text);
+
 .form__title {
-  color: mat-color($mat-dark-theme-foreground, text);
+  color: $formTitleColor;
   margin-bottom: 10px;
+}
+
+.form__file-drop__file-box {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.form__file-drop__icon {
+  color: $formTitleColor;
+}
+
+.form__file-drop__file-name-label {
+  color: darken($formTitleColor, 20%);
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.form__file-drop__file-name {
+  color: $formTitleColor;
+  margin-left: 10px;
+  font-weight: 500;
 }
 
 .form__file-drop {
