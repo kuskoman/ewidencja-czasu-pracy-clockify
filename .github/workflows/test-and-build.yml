@@ -26,8 +26,10 @@ jobs:
       - name: Run tests
         working-directory: frontend
         timeout-minutes: 5
-        run: "workaround"
-        # run: yarn test
+        env:
+          CHROME_BIN: chromium-browser
+          CI: true
+        run: yarn test:ci
 
   test-backend:
     name: Test backend
