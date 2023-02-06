@@ -1,7 +1,7 @@
 {
   "name": "ewidencja-czasu-clockify-backend",
   "version": "0.0.1",
-  "description": "",
+  "description": "An app for filling polish time sheets with Clockify CSV reports",
   "author": "Jakub Surdej <kubasurdej@gmail.com>",
   "private": true,
   "main": "dist/main.js",

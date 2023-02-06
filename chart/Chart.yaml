@@ -1,0 +1,6 @@
+apiVersion: v2
+name: ewidencja-czasu-pracy
+description: An app for filling polish time sheets with Clockify CSV reports
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
