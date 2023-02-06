@@ -83,7 +83,9 @@ export class TemplatesLoaderService implements OnApplicationBootstrap {
         this.allowedTemplates.add(res);
 
         if (this.allowedTemplates.size > this.config.templatesLimit) {
-          const errMsg = `Found more templates than allowed by limit (${this.config.templatesLimit})`;
+          let errMsg = `Found more templates than allowed by limit (${this.config.templatesLimit}).`;
+          errMsg += ` Please remove some templates from ${this.config.templatesPath}`;
+          errMsg += ' or increase the limit in config';
           throw new Error(errMsg);
         }
       }),
