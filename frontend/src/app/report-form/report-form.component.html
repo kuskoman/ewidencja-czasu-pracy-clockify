@@ -3,14 +3,18 @@
     <mat-card-header>
       <mat-card-title class="form__title">Report Form</mat-card-title>
     </mat-card-header>
-    <form class="form" [formGroup]="form">
+    <form class="form" [formGroup]="form" (submit)="sendFormData()">
       <mat-form-field class="form__field">
         <input matInput placeholder="Name" formControlName="name" />
       </mat-form-field>
       <mat-form-field class="form__field">
         <input matInput placeholder="Surname" formControlName="surname" />
       </mat-form-field>
-      <ngx-file-drop dropZoneLabel="Drop files here" class="form__file-drop">
+      <ngx-file-drop
+        dropZoneLabel="Drop files here"
+        class="form__file-drop"
+        (onFileDrop)="dropped($event)"
+      >
         <ng-template
           ngx-file-drop-content-tmp
           let-openFileSelector="openFileSelector"
@@ -28,10 +32,12 @@
           </button>
         </ng-template>
       </ngx-file-drop>
-      <div v-if="true" class="form__file-drop__file-box">
+      <div *ngIf="file" class="form__file-drop__file-box">
         <mat-icon class="form__file-drop__icon">insert_drive_file</mat-icon>
         <span class="form__file-drop__file-name-label">File name: </span>
-        <span class="form__file-drop__file-name">file name.png</span>
+        <span class="form__file-drop__file-name">
+          {{ file.fileEntry.name }}
+        </span>
       </div>
       <button
         mat-raised-button

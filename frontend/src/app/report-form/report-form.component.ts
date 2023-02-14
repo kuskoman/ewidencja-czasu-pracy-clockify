@@ -19,6 +19,7 @@ import {
 } from 'ngx-file-drop';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-report-form',
@@ -36,12 +37,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     NgxFileDropModule,
     MatIconModule,
     HttpClientModule,
+    CommonModule,
   ],
   standalone: true,
 })
 export class ReportFormComponent implements OnInit {
   public form!: FormGroup;
-  private file: NgxFileDropEntry | null = null;
+  public file: NgxFileDropEntry | null = null;
 
   constructor(private readonly http: HttpClient) {}
 
@@ -60,12 +62,13 @@ export class ReportFormComponent implements OnInit {
     }
 
     const [file] = files;
-    this.form;
+    this.file = file;
   }
 
-  public async submit() {
+  public async sendFormData() {
     console.log('Submitting');
     const formData = await this.getFormData();
+    console.log('formData', formData);
     this.http
       .post('http://localhost:3000/reports', formData)
       .subscribe((data) => {
@@ -88,11 +91,13 @@ export class ReportFormComponent implements OnInit {
       throw new Error('You cannot upload a directory');
     }
 
-    return new Promise((res, rej) => {
+    return new Promise<FormData>((res) => {
       const fileEntry = this.file!.fileEntry as FileSystemFileEntry;
       fileEntry.file((loadedFile) => {
         formData.append('file', loadedFile, this.file!.relativePath);
       });
+
+      res(formData);
     });
   }
 }
