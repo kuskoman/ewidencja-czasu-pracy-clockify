@@ -108,9 +108,11 @@ export class ReportFormComponent implements OnInit {
   private getFormData() {
     const formData = new FormData();
 
-    Object.entries(this.form.controls).forEach(([key, control]) => {
-      formData.append(key, control.value);
-    });
+    Object.entries(this.form.controls)
+      .filter(([, v]) => v.value)
+      .forEach(([key, control]) => {
+        formData.append(key, control.value);
+      });
 
     if (!this.file) {
       throw new Error('You must define file to submit the form');
@@ -123,7 +125,7 @@ export class ReportFormComponent implements OnInit {
     return new Promise<FormData>((res) => {
       const fileEntry = this.file!.fileEntry as FileSystemFileEntry;
       fileEntry.file((loadedFile) => {
-        formData.append('file', loadedFile, this.file!.relativePath);
+        formData.append('file', loadedFile);
       });
 
       res(formData);
