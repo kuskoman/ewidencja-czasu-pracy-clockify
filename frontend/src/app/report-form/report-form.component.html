@@ -3,7 +3,12 @@
     <mat-card-header>
       <mat-card-title class="form__title">Report Form</mat-card-title>
     </mat-card-header>
-    <form class="form" [formGroup]="form" (submit)="sendFormData()">
+    <form
+      class="form"
+      [formGroup]="form"
+      (submit)="sendFormData()"
+      (input)="handleFormInput()"
+    >
       <mat-form-field class="form__field">
         <input matInput placeholder="Name" formControlName="name" />
       </mat-form-field>

@@ -45,6 +45,8 @@ export class ReportFormComponent implements OnInit {
   public form!: FormGroup;
   public file: NgxFileDropEntry | null = null;
 
+  private readonly localStorageFormKey = 'savedFormData';
+
   constructor(private readonly http: HttpClient) {}
 
   ngOnInit() {
@@ -54,6 +56,8 @@ export class ReportFormComponent implements OnInit {
       periodStart: new FormControl(''),
       periodEnd: new FormControl(''),
     });
+
+    this.loadFormData();
   }
 
   public dropped(files: NgxFileDropEntry[]) {
@@ -65,15 +69,39 @@ export class ReportFormComponent implements OnInit {
     this.file = file;
   }
 
+  public handleFormInput() {
+    const name = this.form.get('name')?.value;
+    const surname = this.form.get('surname')?.value;
+
+    const savedFormData = {
+      name,
+      surname,
+    };
+
+    const savedFormDataJson = JSON.stringify(savedFormData);
+    localStorage.setItem(this.localStorageFormKey, savedFormDataJson);
+  }
+
   public async sendFormData() {
     console.log('Submitting');
     const formData = await this.getFormData();
     console.log('formData', formData);
     this.http
-      .post('http://localhost:3000/reports', formData)
+      .post('http://localhost:3000/api/reports', formData)
       .subscribe((data) => {
+        console.log('Response:');
         console.log(data);
       });
+  }
+
+  private loadFormData() {
+    const savedFormDataJson = localStorage.getItem(this.localStorageFormKey);
+    if (!savedFormDataJson) {
+      return;
+    }
+
+    const savedFormData = JSON.parse(savedFormDataJson);
+    this.form.patchValue(savedFormData);
   }
 
   private getFormData() {
