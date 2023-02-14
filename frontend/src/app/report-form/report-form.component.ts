@@ -61,11 +61,12 @@ export class ReportFormComponent implements OnInit {
   }
 
   public dropped(files: NgxFileDropEntry[]) {
-    if (files.length != 1) {
+    const realFiles = files.filter((file) => file.relativePath);
+    if (realFiles.length != 1) {
       throw new Error('You can only drop a single file');
     }
 
-    const [file] = files;
+    const [file] = realFiles;
     this.file = file;
   }
 
@@ -107,8 +108,8 @@ export class ReportFormComponent implements OnInit {
   private getFormData() {
     const formData = new FormData();
 
-    Object.entries(formData).forEach(([key, value]) => {
-      formData.append(key, value);
+    Object.entries(this.form.controls).forEach(([key, control]) => {
+      formData.append(key, control.value);
     });
 
     if (!this.file) {
