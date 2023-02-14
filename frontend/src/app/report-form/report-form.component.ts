@@ -125,7 +125,7 @@ export class ReportFormComponent implements OnInit {
     return new Promise<FormData>((res) => {
       const fileEntry = this.file!.fileEntry as FileSystemFileEntry;
       fileEntry.file((loadedFile) => {
-        formData.append('file', loadedFile);
+        formData.append('file', loadedFile, loadedFile.name);
       });
 
       res(formData);
