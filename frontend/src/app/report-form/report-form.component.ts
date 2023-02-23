@@ -88,10 +88,13 @@ export class ReportFormComponent implements OnInit {
     const formData = await this.getFormData();
     console.log('formData', formData);
     this.http
-      .post('http://localhost:3000/api/reports', formData)
+      .post('http://localhost:3000/api/reports', formData, {
+        responseType: 'blob',
+      })
       .subscribe((data) => {
-        console.log('Response:');
-        console.log(data);
+        const blob = new Blob([data], { type: 'text/html; charset=utf-8' });
+        const url = window.URL.createObjectURL(blob);
+        window.open(url);
       });
   }
 
