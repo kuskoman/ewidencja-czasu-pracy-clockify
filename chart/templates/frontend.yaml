@@ -67,7 +67,7 @@ spec:
   tls:
   - hosts:
     - {{ .ingress.host }}
-    secretName: {{ $.Values.certificate.secretName }}
+    secretName: {{ default "ewidencja-czasu-pracy-certificate-secret" $.Values.certificate.secretName }}
   {{ end }}
 {{- end -}}
 {{- end -}}

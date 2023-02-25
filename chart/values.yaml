@@ -1,6 +1,5 @@
 certificate:
   enabled: false
-  secretName: "secretName"
 
 frontend:
   enabled: true
