@@ -48,3 +48,6 @@ Thumbs.db
 Dockerfile
 docker-compose.yml
 .dockerignore
+
+# Local app-config
+./assets/app-config.json
