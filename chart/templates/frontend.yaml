@@ -62,7 +62,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: ewidencja-backend
+            name: ewidencja-fronted
             port:
               number: {{ default 80 .port }}
   {{ if $.Values.certificate.enabled -}}
