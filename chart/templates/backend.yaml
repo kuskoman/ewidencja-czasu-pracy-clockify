@@ -64,6 +64,12 @@ spec:
           name: ewidencja-backend
           port:
             number: {{ default 3000 .port }}
+  {{- if $.Values.certificate.enabled -}}
+  tls:
+  - hosts:
+    - {{ .ingress.host }}
+    secretName: {{ default "ewidencja-czasu-pracy-certificate-secret" $.Values.certificate.secretName }}
+  {{ end }}
 {{ end -}}
 ---
 {{- end -}}
