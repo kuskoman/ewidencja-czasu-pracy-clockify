@@ -47,6 +47,7 @@ spec:
   selector:
     app: ewidencja-frontend
 ---
+{{- if .ingress.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -62,7 +63,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: ewidencja-fronted
+            name: ewidencja-frontend
             port:
               number: {{ default 80 .port }}
   {{ if $.Values.certificate.enabled -}}
@@ -71,5 +72,7 @@ spec:
     - {{ .ingress.host }}
     secretName: {{ default "ewidencja-czasu-pracy-certificate-secret" $.Values.certificate.secretName }}
   {{ end }}
+{{ end -}}
+---
 {{- end -}}
 {{- end -}}
