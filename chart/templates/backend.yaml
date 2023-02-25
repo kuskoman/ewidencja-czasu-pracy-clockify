@@ -7,6 +7,7 @@ metadata:
   name: ewidencja-backend
   labels:
     app: ewidencja-backend
+    group: ewidencja
 spec:
   replicas: {{ default 1 .replicas }}
   selector:
@@ -16,6 +17,7 @@ spec:
     metadata:
       labels:
         app: ewidencja-backend
+        group: ewidencja
     spec:
       containers:
         - name: ewidencja-backend
