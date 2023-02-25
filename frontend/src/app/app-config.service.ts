@@ -1,42 +1,29 @@
 import { Injectable } from '@angular/core';
-import { from, lastValueFrom } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AppConfigurationService {
-  private config$: any = null;
+  private config: any = null;
 
   constructor() {}
 
   private async load() {
-    const defaultConfig$ = from(
-      fetch('assets/app-config.default.json').then((response) =>
-        response.json()
-      )
-    );
+    const configPromises = [
+      'assets/app-config.default.json',
+      'assets/app-config.json',
+    ].map(async (cfgPath) => {
+      const configResponse = await fetch(cfgPath);
+      return await configResponse.json();
+    });
 
-    const config$ = from(
-      fetch('assets/app-config.json').then((response) => response.json())
-    );
-
-    const mergedConfig$ = defaultConfig$.pipe(
-      map((defaultConfig) => {
-        return config$.pipe(
-          map((config) => {
-            return Object.assign({}, defaultConfig, config);
-          })
-        );
-      })
-    );
-
-    this.config$ = await lastValueFrom(mergedConfig$);
+    const configs = await Promise.all(configPromises);
+    this.config = configs.reduce((acc, cfg) => ({ ...acc, ...cfg }), {});
   }
 
   public async get(key: string) {
-    if (!this.config$) {
+    if (!this.config) {
       await this.load();
     }
 
-    return this.config$[key];
+    return this.config[key];
   }
 }

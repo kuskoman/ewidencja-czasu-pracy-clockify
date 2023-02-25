@@ -62,9 +62,9 @@ export class ReportFormComponent implements OnInit {
     console.log('Submitting');
     const formData = await this.getFormData();
     const apiUrl = await this.configService.get('apiUrl');
-    console.log('formData', formData);
+    const formUrl = `${apiUrl}api/reports`;
     this.http
-      .post(apiUrl, formData, {
+      .post(formUrl, formData, {
         responseType: 'blob',
       })
       .subscribe((data) => {
