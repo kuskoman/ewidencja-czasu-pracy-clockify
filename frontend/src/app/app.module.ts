@@ -7,19 +7,20 @@ import { ReportFormComponent } from './report-form/report-form.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { AppInitService } from './app-init.service';
+import { MaterialModule } from './material/material.module';
 
 export const initApp = (appInitService: AppInitService) => {
   return () => appInitService.init();
 };
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ReportFormComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ReportFormComponent,
     NavbarComponent,
     FooterComponent,
+    MaterialModule,
   ],
   providers: [
     AppInitService,
@@ -30,6 +31,6 @@ export const initApp = (appInitService: AppInitService) => {
       multi: true,
     },
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent, ReportFormComponent],
 })
 export class AppModule {}
