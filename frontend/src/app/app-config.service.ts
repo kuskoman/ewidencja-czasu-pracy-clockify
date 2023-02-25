@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { from, lastValueFrom } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-declare var window: any;
+@Injectable({ providedIn: 'root' })
+export class AppConfigurationService {
+  private config$: any = null;
 
-@Injectable()
-export class AppInitService {
-  public async init() {
+  constructor() {}
+
+  private async load() {
     const defaultConfig$ = from(
       fetch('assets/app-config.default.json').then((response) =>
         response.json()
@@ -21,14 +23,20 @@ export class AppInitService {
       map((defaultConfig) => {
         return config$.pipe(
           map((config) => {
-            const mergedConfig = Object.assign({}, defaultConfig, config);
-            window.config = mergedConfig;
-            return;
+            return Object.assign({}, defaultConfig, config);
           })
         );
       })
     );
 
-    return await lastValueFrom(mergedConfig$);
+    this.config$ = await lastValueFrom(mergedConfig$);
+  }
+
+  public async get(key: string) {
+    if (!this.config$) {
+      await this.load();
+    }
+
+    return this.config$[key];
   }
 }

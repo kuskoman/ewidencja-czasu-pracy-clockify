@@ -6,12 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReportFormComponent } from './report-form/report-form.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { AppInitService } from './app-init.service';
 import { MaterialModule } from './material/material.module';
-
-export const initApp = (appInitService: AppInitService) => {
-  return () => appInitService.init();
-};
+import { AppConfigurationService } from './app-config.service';
 
 @NgModule({
   declarations: [AppComponent, ReportFormComponent],
@@ -22,15 +18,7 @@ export const initApp = (appInitService: AppInitService) => {
     FooterComponent,
     MaterialModule,
   ],
-  providers: [
-    AppInitService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initApp,
-      deps: [AppInitService],
-      multi: true,
-    },
-  ],
+  providers: [AppConfigurationService],
   bootstrap: [AppComponent, ReportFormComponent],
 })
 export class AppModule {}

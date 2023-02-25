@@ -6,6 +6,7 @@ import {
   NgxFileDropModule,
 } from 'ngx-file-drop';
 import { HttpClient } from '@angular/common/http';
+import { AppConfigurationService } from '../app-config.service';
 
 @Component({
   selector: 'app-report-form',
@@ -18,7 +19,10 @@ export class ReportFormComponent implements OnInit {
 
   private readonly localStorageFormKey = 'savedFormData';
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly configService: AppConfigurationService
+  ) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -57,9 +61,10 @@ export class ReportFormComponent implements OnInit {
   public async sendFormData() {
     console.log('Submitting');
     const formData = await this.getFormData();
+    const apiUrl = await this.configService.get('apiUrl');
     console.log('formData', formData);
     this.http
-      .post('http://localhost:3000/api/reports', formData, {
+      .post(apiUrl, formData, {
         responseType: 'blob',
       })
       .subscribe((data) => {
