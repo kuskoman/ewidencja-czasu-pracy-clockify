@@ -5,17 +5,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ewidencja-backend
-spec:
-  replicas: {{ default 1 .replicas }}
   labels:
     app: ewidencja-backend
-    selector:
-      matchLabels:
-        name: ewidencja-backend
+spec:
+  replicas: {{ default 1 .replicas }}
+  selector:
+    matchLabels:
+        app: ewidencja-backend
   template:
     metadata:
       labels:
-        name: ewidencja-backend
+        app: ewidencja-backend
     spec:
       containers:
         - name: ewidencja-backend

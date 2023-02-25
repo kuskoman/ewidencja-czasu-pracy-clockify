@@ -5,17 +5,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ewidencja-frontend
-spec:
-  replicas: {{ default 1 .replicas }}
   labels:
     app: ewidencja-frontend
-    selector:
-      matchLabels:
-        name: ewidencja-frontend
+spec:
+  replicas: {{ default 1 .replicas }}
+  selector:
+    matchLabels:
+      app: ewidencja-frontend
   template:
     metadata:
       labels:
-        name: ewidencja-frontend
+        app: ewidencja-frontend
     spec:
       containers:
         - name: ewidencja-frontend
