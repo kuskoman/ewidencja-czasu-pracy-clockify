@@ -33,7 +33,8 @@ spec:
             timeoutSeconds: 5
           env:
             - name: API_URL
-              value: {{ default $.Values.backend.ingress.host .apiUrl }}
+              {{- $defaultApiUrl := printf "https://%s/" $.Values.backend.ingress.host }}
+              value: {{ default $defaultApiUrl .apiUrl }}
 ---
 apiVersion: v1
 kind: Service
