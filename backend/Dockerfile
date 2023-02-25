@@ -12,7 +12,7 @@ COPY . .
 RUN yarn build:prod
 
 
-FROM scratch
+FROM alpine
 
 WORKDIR /app
 

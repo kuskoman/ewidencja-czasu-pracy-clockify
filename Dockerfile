@@ -21,7 +21,7 @@ COPY ./backend .
 # TODO: move fetching Node to previous step, so it could be cached (pkg-cache could be utilized)
 RUN yarn build:prod
 
-FROM scratch as release
+FROM alpine as release
 
 # todo: change FRONTEND_SERVE to path to static files
 ENV NODE_ENV=production \
