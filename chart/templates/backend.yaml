@@ -1,7 +1,7 @@
 {{- with .Values.backend -}}
 {{- if .enabled -}}
 ---
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ewidencja-backend
