@@ -22,7 +22,7 @@ spec:
       containers:
         - name: ewidencja-backend
           image: "{{ .image.repository }}:{{ .image.tag }}"
-          imagePullPolicy: {{ .image.pullPolicy }}
+          imagePullPolicy: {{ default "Always" .image.pullPolicy }}
           ports:
             - containerPort: 3000
           livelinessProbe:

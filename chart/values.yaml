@@ -11,7 +11,6 @@ frontend:
   image:
     repository: ghcr.io/kuskoman/ewidencja-czasu-pracy-clockify
     tag: frontend-latest
-    pullPolicy: IfNotPresent
 
 backend:
   enabled: true
@@ -23,4 +22,3 @@ backend:
   image:
     repository: ghcr.io/kuskoman/ewidencja-czasu-pracy-clockify
     tag: backend-latest
-    pullPolicy: IfNotPresent
