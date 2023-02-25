@@ -64,7 +64,7 @@ spec:
           name: ewidencja-backend
           port:
             number: {{ default 3000 .port }}
-  {{- if $.Values.certificate.enabled -}}
+  {{ if $.Values.certificate.enabled -}}
   tls:
   - hosts:
     - {{ .ingress.host }}

@@ -1,5 +1,5 @@
 certificate:
-  enabled: false
+  enabled: true
 
 frontend:
   enabled: true
