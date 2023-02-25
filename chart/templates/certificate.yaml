@@ -11,6 +11,11 @@ spec:
     kind: {{ default "ClusterIssuer" .issuerKind }}
     group: {{ default "cert-manager.io" .issuerGroup }}
   dnsNames:
-    - {{ required "you must provide .domain in root context" $.Values.domain }}
+  {{- if and (.Values.backend.enabled .Values.backend.ingress.enabled) }}
+    - {{ required "you must provide backend domain" .Values.backend.ingress.host }}
+  {{- end }}
+  {{- if and (.Values.frontend.enabled .Values.frontend.ingress.enabled) }}
+    - {{ required "you must provide frontend domain" .Values.frontend.ingress.host }}
+  {{- end }}
 {{ end -}}
 {{ end -}}

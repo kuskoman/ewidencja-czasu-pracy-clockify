@@ -1,56 +1,57 @@
-{{- with .Values.frontend -}}
+{{- with .Values.backend -}}
 {{- if .enabled -}}
 ---
 apiVersion: v1
 kind: Deployment
 metadata:
-  name: ewidencja-frontend
+  name: ewidencja-backend
 spec:
   replicas: {{ default 1 .replicas }}
   labels:
-    app: ewidencja-frontend
+    app: ewidencja-backend
     selector:
       matchLabels:
-        name: ewidencja-frontend
+        name: ewidencja-backend
   template:
     metadata:
       labels:
-        name: ewidencja-frontend
+        name: ewidencja-backend
     spec:
       containers:
-        - name: ewidencja-frontend
+        - name: ewidencja-backend
           image: "{{ .image.repository }}:{{ .image.tag }}"
           imagePullPolicy: {{ .image.pullPolicy }}
           ports:
-            - containerPort: 80
+            - containerPort: 3000
           livelinessProbe:
             httpGet:
               path: /
-              port: 80
+              port: 3000
             initialDelaySeconds: 30
             timeoutSeconds: 5
-          env:
-            - name: API_URL
-              value: {{ default $.Values.backend.ingress.host .apiUrl }}
 ---
+{{- if .service.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: ewidencja-frontend
+  name: ewidencja-backend
 spec:
   ports:
-    - port: {{ default 80 .port }}
-      targetPort: {{ default 80 .targetPort }}
+    - port: {{ default 3000 .port }}
+      targetPort: {{ default 3000 .targetPort }}
       protocol: TCP
   selector:
-    name: ewidencja-frontend
+    name: ewidencja-backend
+{{- end }}
 ---
-apiVersion: networking.k8s.io/v1beta1
+{{- if .ingress.enabled }}
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ewidencja-frontend
+  name: ewidencja-backend
   annotations:
     kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: {{ .ingress.host }}
@@ -62,12 +63,8 @@ spec:
         service:
           name: ewidencja-backend
           port:
-            number: {{ default 80 .port }}
-  {{- if $.Values.certificate.enabled -}}
-  tls:
-  - hosts:
-    - {{ .ingress.host }}
-    secretName: {{ $.Values.certificate.secretName }}
-  {{ end }}
+            number: {{ default 3000 .port }}
+{{ end -}}
+---
 {{- end -}}
 {{- end -}}

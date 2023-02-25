@@ -1,5 +1,27 @@
 certificate:
   enabled: false
+  secretName: "secretName"
 
 frontend:
   enabled: true
+  service:
+    enabled: true
+  ingress:
+    enabled: true
+    host: frontend.example.com
+  image:
+    repository: ghcr.io/kuskoman/ewidencja-czasu-pracy-clockify
+    tag: frontend-latest
+    pullPolicy: IfNotPresent
+
+backend:
+  enabled: true
+  service:
+    enabled: true
+  ingress:
+    enabled: true
+    host: api.example.com
+  image:
+    repository: ghcr.io/kuskoman/ewidencja-czasu-pracy-clockify
+    tag: backend-latest
+    pullPolicy: IfNotPresent
