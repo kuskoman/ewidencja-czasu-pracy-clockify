@@ -43,7 +43,7 @@ spec:
       targetPort: {{ default 80 .targetPort }}
       protocol: TCP
   selector:
-    name: ewidencja-frontend
+    app: ewidencja-frontend
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -55,14 +55,14 @@ spec:
   rules:
   - host: {{ .ingress.host }}
     http:
-    paths:
-    - path: /
-      pathType: Prefix
-      backend:
-        service:
-          name: ewidencja-backend
-          port:
-            number: {{ default 80 .port }}
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ewidencja-backend
+            port:
+              number: {{ default 80 .port }}
   {{ if $.Values.certificate.enabled -}}
   tls:
   - hosts:

@@ -41,7 +41,7 @@ spec:
       targetPort: {{ default 3000 .targetPort }}
       protocol: TCP
   selector:
-    name: ewidencja-backend
+    app: ewidencja-backend
 {{- end }}
 ---
 {{- if .ingress.enabled }}
@@ -56,14 +56,14 @@ spec:
   rules:
   - host: {{ .ingress.host }}
     http:
-    paths:
-    - path: /
-      pathType: Prefix
-      backend:
-        service:
-          name: ewidencja-backend
-          port:
-            number: {{ default 3000 .port }}
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ewidencja-backend
+            port:
+              number: {{ default 3000 .port }}
   {{ if $.Values.certificate.enabled -}}
   tls:
   - hosts:
