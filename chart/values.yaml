@@ -1,0 +1,5 @@
+certificate:
+  enabled: false
+
+frontend:
+  enabled: true

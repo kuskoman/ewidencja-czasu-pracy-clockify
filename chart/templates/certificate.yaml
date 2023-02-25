@@ -1,0 +1,16 @@
+{{- with .Valeus.certificate -}}
+{{- if .enabled }}
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ default "ewidencja-czasu-pracy-certificate" .name }}
+spec:
+  secretName: {{ default "ewidencja-czasu-pracy-certificate-secret" .secretName }}
+  issuerRef:
+    name: {{ required "you must provide issuerName" .issuerName }}
+    kind: {{ default "ClusterIssuer" .issuerKind }}
+    group: {{ default "cert-manager.io" .issuerGroup }}
+  dnsNames:
+    - {{ required "you must provide .domain in root context" $.Values.domain }}
+{{ end -}}
+{{ end -}}
