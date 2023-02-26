@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {
-  FileSystemFileEntry,
-  NgxFileDropEntry,
-  NgxFileDropModule,
-} from 'ngx-file-drop';
+import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 import { HttpClient } from '@angular/common/http';
 import { AppConfigurationService } from '../app-config.service';
 
@@ -101,8 +97,11 @@ export class ReportFormComponent implements OnInit {
       throw new Error('You cannot upload a directory');
     }
 
-    return new Promise<FormData>((res) => {
-      const fileEntry = this.file!.fileEntry as FileSystemFileEntry;
+    return new Promise<FormData>((res, rej) => {
+      if (!this.file) {
+        return rej('File is not defined');
+      }
+      const fileEntry = this.file.fileEntry as FileSystemFileEntry;
       fileEntry.file((loadedFile) => {
         formData.append('file', loadedFile, loadedFile.name);
       });

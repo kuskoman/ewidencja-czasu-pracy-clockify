@@ -8,10 +8,47 @@ on:
   pull_request:
     branches:
       - master
+
 jobs:
+  lint-backend:
+    name: Lint backend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 19
+      - name: Install dependencies
+        run: yarn --from-lockfile
+        working-directory: backend
+      - name: Lint
+        run: yarn lint:ci
+        working-directory: backend
+
+  lint-frontend:
+    name: Lint frontend
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 19
+      - name: Install dependencies
+        run: yarn --from-lockfile
+        working-directory: frontend
+      - name: Lint
+        run: yarn ng lint
+        working-directory: frontend
+
   build-frontend-docker-image:
     name: Build frontend Docker image
     runs-on: ubuntu-latest
+    needs:
+      - lint-frontend
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -33,6 +70,8 @@ jobs:
   build-backend-docker-image:
     name: Build backend Docker image
     runs-on: ubuntu-latest
+    needs:
+      - lint-backend
     steps:
       - name: Checkout
         uses: actions/checkout@v3
