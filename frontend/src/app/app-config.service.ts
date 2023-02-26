@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class AppConfigurationService {
-  private config: any = null;
+  private config: Record<string, unknown> | null = null;
 
-  constructor() {}
-
-  private async load() {
+  private async load(): Promise<Record<string, unknown>> {
     const configPromises = [
       'assets/app-config.default.json',
       'assets/app-config.json',
@@ -16,14 +14,19 @@ export class AppConfigurationService {
     });
 
     const configs = await Promise.all(configPromises);
-    this.config = configs.reduce((acc, cfg) => ({ ...acc, ...cfg }), {});
+    const config = configs.reduce((acc, cfg) => ({ ...acc, ...cfg }), {});
+    this.config = config;
+    return config;
   }
 
   public async get(key: string) {
+    let config: Record<string, unknown>;
     if (!this.config) {
-      await this.load();
+      config = await this.load();
+    } else {
+      config = this.config;
     }
 
-    return this.config[key];
+    return config[key];
   }
 }
