@@ -22,8 +22,10 @@ jobs:
           node-version: 19
       - name: Install dependencies
         run: yarn --from-lockfile
+        working-directory: backend
       - name: Lint
         run: yarn lint:ci
+        working-directory: backend
 
   lint-frontend:
     name: Lint frontend
@@ -37,8 +39,10 @@ jobs:
           node-version: 19
       - name: Install dependencies
         run: yarn --from-lockfile
+        working-directory: frontend
       - name: Lint
         run: yarn ng lint
+        working-directory: frontend
 
   build-frontend-docker-image:
     name: Build frontend Docker image
