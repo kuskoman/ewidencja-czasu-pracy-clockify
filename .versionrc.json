@@ -17,5 +17,23 @@
     { "type": "build", "section": "Build Configuration" },
     { "type": "ci", "section": "Continuous Integration" },
     { "type": "cd", "section": "Continuous Delivery" }
+  ],
+  "bumpFiles": [
+    {
+      "filename": "package.json",
+      "type": "json"
+    },
+    {
+      "filename": "backend/package.json",
+      "type": "json"
+    },
+    {
+      "filename": "frontend/package.json",
+      "type": "json"
+    },
+    {
+      "filename": "chart/Chart.yaml",
+      "updater": "./scripts/helmVersionUpdater.cjs"
+    }
   ]
 }
