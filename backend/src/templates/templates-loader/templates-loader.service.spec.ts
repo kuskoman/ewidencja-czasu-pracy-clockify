@@ -23,9 +23,9 @@ describe(TemplatesLoaderService.name, () => {
   });
 
   it('should not allow to load template outside allowed dir', async () => {
-    await expect(
-      service.getTemplate('../templates-cache.service.spec.ts'),
-    ).rejects.toThrow(ForbiddenException);
+    const invalidTemplatePath = '../templates-cache.service.spec.ts';
+    const templatePromise = service.getTemplate(invalidTemplatePath);
+    await expect(templatePromise).rejects.toThrow(ForbiddenException);
   });
 
   it('should allow to load template inside templates dir', async () => {
