@@ -17,6 +17,7 @@
     "release": "./node_modules/.bin/standard-version --no-verify",
     "release:major": "yarn release --release-as major",
     "release:minor": "yarn release --release-as minor",
-    "release:patch": "yarn release --release-as patch"
+    "release:patch": "yarn release --release-as patch",
+    "prepare": "husky install"
   }
 }
