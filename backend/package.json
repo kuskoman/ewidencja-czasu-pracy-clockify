@@ -35,7 +35,7 @@
     "@nestjs/swagger": "^6.2.1",
     "@nestjs/terminus": "^9.2.1",
     "class-transformer": "^0.5.1",
-    "class-validator": "^0.13.2",
+    "class-validator": "^0.14.0",
     "csv": "^6.2.7",
     "ejs": "^3.1.8",
     "moment": "^2.29.4",
