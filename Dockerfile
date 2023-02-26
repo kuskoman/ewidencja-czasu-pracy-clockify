@@ -1,4 +1,4 @@
-FROM node:19.4.0-alpine as frontend
+FROM node:19.7.0-alpine as frontend
 
 WORKDIR /frontend
 COPY ./frontend/package.json ./frontend/yarn.lock ./
@@ -7,7 +7,7 @@ RUN yarn install --frozen-lockfile
 COPY ./frontend .
 RUN yarn build
 
-FROM node:18.12.1-alpine as backend
+FROM node:19.7.0-alpine as backend
 
 WORKDIR /backend
 
