@@ -33,21 +33,7 @@ These commands will run the application in development mode.
 
 ## Running with Docker
 
-### Single Dockerfile
-
-The application contains a single Dockerfile that allows you to run both the frontend and the backend. To build the image, run the following command:
-
-```sh
-docker build -t clockify-work-time-record .
-```
-
-To run the application, run the following command:
-
-```sh
-docker run -p 3000:3000 -d clockify-work-time-record
-```
-
-It is also possible to run the frontend and backend separately. To build the images, run the following commands:
+### Frontend
 
 ```sh
 docker build -t clockify-work-time-record-frontend -f frontend/Dockerfile ./frontend
@@ -56,6 +42,8 @@ docker build -t clockify-work-time-record-frontend -f frontend/Dockerfile ./fron
 ```sh
 docker build -t clockify-work-time-record-backend -f backend/Dockerfile ./backend
 ```
+
+### Backend
 
 To run the application, run the following commands:
 

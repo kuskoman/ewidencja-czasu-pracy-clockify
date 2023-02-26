@@ -5,11 +5,6 @@ import { CsvParserModule } from './csv-parser/csv-parser.module';
 import { TemplatesModule } from './templates/templates.module';
 import { ReportsModule } from './reports/reports.module';
 import { MulterModule } from '@nestjs/platform-express';
-import { FrontendModule } from './frontend/frontend.module';
-
-const frontendServeModule =
-  process.env.FRONTEND_SERVE === 'true' ? [FrontendModule] : [];
-
 @Module({
   imports: [
     AppConfigModule,
@@ -18,7 +13,6 @@ const frontendServeModule =
     TemplatesModule,
     ReportsModule,
     MulterModule,
-    ...frontendServeModule,
   ],
 })
 export class AppModule {}

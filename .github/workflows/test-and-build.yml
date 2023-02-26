@@ -50,20 +50,3 @@ jobs:
       - name: Push master Docker image
         if: github.ref == 'refs/heads/master'
         run: docker push ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:backend-latest
-
-  build-single-docker-image:
-    name: Build single Docker image
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Build Docker image
-        run: docker build -t ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest .
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GH_PAT }}
-      - name: Push Docker image
-        run: docker push ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest
