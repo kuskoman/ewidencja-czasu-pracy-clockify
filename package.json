@@ -1,0 +1,21 @@
+{
+  "name": "ewidencja-czasu-pracy-clockify",
+  "version": "0.0.1",
+  "description": "A simple application for automating the filling of work time records using Clockify reports in CSV file form.",
+  "repository": "https://github.com/kuskoman/ewidencja-czasu-pracy-clockify.git",
+  "author": "Jakub Surdej <kubasurdej@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
+    "husky": "^8.0.3",
+    "standard-version": "^9.5.0"
+  },
+  "scripts": {
+    "release": "./node_modules/.bin/standard-version --no-verify",
+    "release:major": "yarn release --release-as major",
+    "release:minor": "yarn release --release-as minor",
+    "release:patch": "yarn release --release-as patch"
+  }
+}
