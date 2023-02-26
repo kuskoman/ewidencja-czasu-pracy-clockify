@@ -1,20 +1,21 @@
 const YAML = require("js-yaml");
 
-const loadChartManifest = async (contents) => {
+const loadChartManifest = (contents) => {
   const parsedChartManifest = YAML.load(contents);
   return parsedChartManifest;
 };
 
-const writeVersion = async (contents, version) => {
-  const parsedChartManifest = await loadChartManifest(contents);
+const writeVersion = (contents, version) => {
+  const parsedChartManifest = loadChartManifest(contents);
   parsedChartManifest.version = version;
   parsedChartManifest.appVersion = version;
   const updatedChartManifest = YAML.dump(parsedChartManifest);
+  console.log("Updated chart manifest: ", updatedChartManifest);
   return updatedChartManifest;
 };
 
-const readVersion = async (contents) => {
-  const parsedChartManifest = await loadChartManifest(contents);
+const readVersion = (contents) => {
+  const parsedChartManifest = loadChartManifest(contents);
   return parsedChartManifest.version;
 };
 
