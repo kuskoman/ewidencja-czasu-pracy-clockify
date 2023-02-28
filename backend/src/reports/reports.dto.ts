@@ -28,3 +28,14 @@ export class CreateReportDto {
 export type CreateReportWithFileDto = CreateReportDto & {
   file: Express.Multer.File;
 };
+
+export class UnprocessableReportResponse {
+  @ApiProperty({ example: 'You must provide a valid file' })
+  message!: string;
+
+  @ApiProperty({ example: 422 })
+  statusCode!: number;
+
+  @ApiProperty({ example: 'Unprocessable Entity' })
+  error!: string;
+}

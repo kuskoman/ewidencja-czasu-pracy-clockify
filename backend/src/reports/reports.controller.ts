@@ -10,9 +10,13 @@ import {
   Logger,
 } from '@nestjs/common';
 import { ReportsService } from './reports.service';
-import { CreateReportDto } from './reports.dto';
+import { CreateReportDto, UnprocessableReportResponse } from './reports.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { ApiTags } from '@nestjs/swagger';
+import {
+  ApiOkResponse,
+  ApiTags,
+  ApiUnprocessableEntityResponse,
+} from '@nestjs/swagger';
 
 @Controller('reports')
 @ApiTags('reports')
@@ -22,6 +26,8 @@ export class ReportsController {
 
   @Post()
   @HttpCode(HttpStatus.OK)
+  @ApiOkResponse({ description: 'HTML report', type: String })
+  @ApiUnprocessableEntityResponse({ type: UnprocessableReportResponse })
   @UseInterceptors(FileInterceptor('file'))
   async create(
     @UploadedFile() file: Express.Multer.File,
