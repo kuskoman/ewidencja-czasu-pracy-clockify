@@ -17,8 +17,28 @@ export class ReportsService {
   ) {}
 
   public async create(createReportDto: CreateReportWithFileDto) {
-    const { file, surname, name } = createReportDto;
+    const { surname, name } = createReportDto;
 
+    const csvParseResult = await this.parseCsvFile(createReportDto);
+
+    const { templateRows, hoursSum, period } = csvParseResult;
+
+    const templateData = {
+      evidence: templateRows,
+      name,
+      surname,
+      hoursSum,
+      period,
+    };
+
+    return this.templatesService.renderTemplate(
+      REPORT_TEMPLATE_NAME,
+      templateData,
+    );
+  }
+
+  private async parseCsvFile(createReportDto: CreateReportWithFileDto) {
+    const { file } = createReportDto;
     const parsedCsv = await this.csvParserService.parseCsvReport(file.buffer);
 
     const pipes = [
@@ -35,17 +55,6 @@ export class ReportsService {
     const hoursSum = parseHoursSum(parsedCsv);
     const period = calculatePeriod(parsedCsv);
 
-    const templateData = {
-      evidence: templateRows,
-      name,
-      surname,
-      hoursSum,
-      period,
-    };
-
-    return this.templatesService.renderTemplate(
-      REPORT_TEMPLATE_NAME,
-      templateData,
-    );
+    return { templateRows, hoursSum, period };
   }
 }

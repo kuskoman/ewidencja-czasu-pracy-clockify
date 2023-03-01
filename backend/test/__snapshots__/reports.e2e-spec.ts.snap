@@ -1,0 +1,230 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportsController (e2e) port /reports should return 200 and create a report when valid CSV file and data is provided 1`] = `
+"<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ewidencja Czasu Pracy</title>
+  </head>
+  <body>
+    <main>
+      <h1>EWIDENCJA CZASU ZLECENIOBIORCY</h1>
+      <p><span style="font-weight: bold">Okres:</span> 2023/02/01 - 2023/02/28</p>
+      <p><span style="font-weight: bold">Imię:</span> Jakub</p>
+      <p>
+        <span style="font-weight: bold">Nazwisko:</span> Surdej
+      </p>
+
+      <table>
+        <tr>
+          <td><span style="font-weight: bold">Data</span></td>
+          <td><span style="font-weight: bold">od</span></td>
+          <td><span style="font-weight: bold">do</span></td>
+          <td><span style="font-weight: bold">ilość godzin</span></td>
+          <td><span style="font-weight: bold">podpis pracownika</span></td>
+        </tr>
+
+        
+        <tr>
+          <td>2023/02/01</td>
+          <td>8:30</td>
+          <td>17:30</td>
+          <td>9</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/02</td>
+          <td>8:30</td>
+          <td>17:30</td>
+          <td>9</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/03</td>
+          <td>8:30</td>
+          <td>15:30</td>
+          <td>7</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/06</td>
+          <td>8:30</td>
+          <td>16:30</td>
+          <td>8</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/07</td>
+          <td>8:30</td>
+          <td>16:30</td>
+          <td>8</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/08</td>
+          <td>8:30</td>
+          <td>16:30</td>
+          <td>8</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/09</td>
+          <td>8:30</td>
+          <td>16:30</td>
+          <td>8</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/10</td>
+          <td>8:30</td>
+          <td>16:30</td>
+          <td>8</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/13</td>
+          <td>8:30</td>
+          <td>18:30</td>
+          <td>10</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/14</td>
+          <td>8:30</td>
+          <td>14:30</td>
+          <td>6</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/15</td>
+          <td>8:30</td>
+          <td>16:30</td>
+          <td>8</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/16</td>
+          <td>8:30</td>
+          <td>16:30</td>
+          <td>8</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/17</td>
+          <td>8:30</td>
+          <td>16:30</td>
+          <td>8</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/20</td>
+          <td>8:30</td>
+          <td>16:30</td>
+          <td>8</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/21</td>
+          <td>8:30</td>
+          <td>16:30</td>
+          <td>8</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/22</td>
+          <td>8:30</td>
+          <td>16:30</td>
+          <td>8</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/23</td>
+          <td>8:30</td>
+          <td>16:30</td>
+          <td>8</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/24</td>
+          <td>8:30</td>
+          <td>16:30</td>
+          <td>8</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/27</td>
+          <td>8:30</td>
+          <td>16:30</td>
+          <td>8</td>
+          <td></td>
+        </tr>
+        
+        <tr>
+          <td>2023/02/28</td>
+          <td>8:30</td>
+          <td>16:30</td>
+          <td>8</td>
+          <td></td>
+        </tr>
+        
+
+        <tr>
+          <td><span style="font-weight: bold">Suma</span></td>
+          <td></td>
+          <td></td>
+          <td><span style="font-weight: bold">160</span></td>
+          <td></td>
+        </tr>
+      </table>
+    </main>
+    <style>
+      @page {
+        size: A4;
+      }
+
+      @page {
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+
+      main {
+        text-align: center;
+      }
+
+      table {
+        margin: auto;
+      }
+
+      table,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+      }
+
+      td {
+        min-width: 75px;
+      }
+    </style>
+  </body>
+</html>
+"
+`;
